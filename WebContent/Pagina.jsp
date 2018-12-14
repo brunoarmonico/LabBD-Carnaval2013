@@ -15,11 +15,13 @@
 
 <!-- SCRIPTS -->
 <script>
+
 $(document).ready(function(){
         $("#notasAnteriores").hide();
         $("#ocultarNotas").hide();
 });
 
+//ver notas anteriores
 $(document).ready(function(){
 	    $("#verNotas").click(function(){
 	        $("#notasAnteriores").show();
@@ -28,6 +30,7 @@ $(document).ready(function(){
 	    });
 	});
 	
+//ocultar notas anteriores
 $(document).ready(function(){
     $("#ocultarNotas").click(function(){
         $("#notasAnteriores").hide();
@@ -36,6 +39,7 @@ $(document).ready(function(){
     });
 });
 
+//permite somente numeros no campo de nota
 $(document).ready(function() {
     $("#adicionaNota").keydown(function (e) {
     	
@@ -70,6 +74,8 @@ $(document).ready(function() {
 			
 	<h3 id="verNotas">[Ver notas anteriores]</h3>
 	<h3 id="ocultarNotas">[Ocultar notas anteriores]</h3>
+	
+	<!-- Tabela com notas anteriores -->
 	<table class="table table-striped table-dark" id="notasAnteriores">
 		<tr>
 			<th>Quesito</th>
@@ -106,33 +112,37 @@ $(document).ready(function() {
 		
 		<% String nomes[] = cn.proximaNota(que, esc, jur); %>
 		
-		<% if (que < 11 ){ %>
-				
+		<% if (que < 11 ){ %>		
 	</table>
 	<hr>
+	
+	<!-- Tabela para adicionar novas notas -->
 		<form action="./CadastrarNota" method="post">
 		<div class="container">
 		<h3>Inserir Proxima Nota</h3>
-	<table class="table table-striped">
-		<tr>
-			<th>Quesito</th>
-			<th>Escola</th>
-			<th>Jurado</th>
-			<th>Nota</th>
-		</tr>
-		<tr>
-			<td> <input type="hidden" name="quesito" value="<% out.print(que); %>"/> <% out.print(nomes[0]); %> </td>
-			<td> <input type="hidden" name="escola" value="<% out.print(esc); %>"/> <% out.print(nomes[1]); %> </td>
-			<td> <input type="hidden" name="jurado" value="<% out.print(jur); %>"/> <% out.print(nomes[2]); %> </td>
-			<td> <input type="number" step=0.1 max="10" min="5" style="width: 5em;" name="nota"/> 	
-			
-			<button value="enviarNota" type="submit" name="prButton"> Enviar </button> </td>
-		</tr>
-	</table>
-	<% } %>
-	<div align="center"><button value="verQuesito" type="submit" name="prButton">Ver Quesito</button> <button value="verTotal" type="submit" name="prButton">Ver Total</button></div>
-	<br>
-</div>
-</form>
+			<table class="table table-striped">
+				<tr>
+					<th>Quesito</th>
+					<th>Escola</th>
+					<th>Jurado</th>
+					<th>Nota</th>
+				</tr>
+				<tr>
+					<td> <input type="hidden" name="quesito" value="<% out.print(que); %>"/> <% out.print(nomes[0]); %> </td>
+					<td> <input type="hidden" name="escola" value="<% out.print(esc); %>"/> <% out.print(nomes[1]); %> </td>
+					<td> <input type="hidden" name="jurado" value="<% out.print(jur); %>"/> <% out.print(nomes[2]); %> </td>
+					<td> <input type="number" step=0.1 max="10" min="5" style="width: 5em;" name="nota"/> 	
+					
+					<button value="enviarNota" type="submit" name="prButton"> Enviar </button> </td>
+				</tr>
+			</table>
+		<% } %>
+		<div align="center">
+			<button value="verQuesito" type="submit" name="prButton">Ver Quesito</button> 
+			<button value="verTotal" type="submit" name="prButton">Ver Total</button>
+		</div>
+		<br>
+		</div>
+		</form>
 </body>
 </html>

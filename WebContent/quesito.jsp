@@ -38,6 +38,8 @@
 			<th align="center"><% out.print(notas.get(0).getNome_quesito()); %></th>
 		</tr>
 	</table>
+	
+	<!-- tabela com notas por quesito -->
 		<table class="table table-striped">
 		<tr>
 			<th>Escola</th>
@@ -60,7 +62,7 @@
 				<% } %>
 			</tr>
 			<% cont++; %>
-			<% //System.out.println(nt.getNome_escola() + " - " + (notas.get(cont + 2 ).getNome_escola())); %>
+			
 			<% if (cont != notas.size()){ %>
 				<% if (nt.getNome_escola().equals(notas.get(cont).getNome_escola())) { %>
 				
@@ -77,6 +79,8 @@
 				</tr>
 			<% } %>
 		<% } %>
+		
+		</table>
 		
 		<% } else { %>
 		NENHUMA NOTA NESTE QUESITO!

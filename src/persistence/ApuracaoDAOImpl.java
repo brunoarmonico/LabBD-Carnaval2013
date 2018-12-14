@@ -16,16 +16,15 @@ import model.TotalNotas;
 
 public class ApuracaoDAOImpl implements ApuracaoDAO {
 
+	//Procedure para adicionar notas
 	@Override
 	public String enviaNota(NovaNota nota) {
-		
 		Connection con = GenericDAOImpl.getInstance().getConnection();
 		String query = "{call adiciona_nota (?, ?, ?, ?, ?)}";
 		String saida = null;
 		try {
 			
 			CallableStatement ps = con.prepareCall(query);
-			
 			ps.setDouble(1, nota.getNota());
 			ps.setInt(2, nota.getId_quesito());
 			ps.setInt(3, nota.getId_jurado());
@@ -36,16 +35,15 @@ public class ApuracaoDAOImpl implements ApuracaoDAO {
 			ps.close();
 		}
 		catch (Exception e) {
-			
 			e.printStackTrace();
 		}
-		//System.out.println(saida);
 		return saida;
 	}
 
+	// Procedure para receber notas
+	// Não tem motivo pra isso ser uma procedure, não sei porque fiz isso.
 	@Override
 	public List<Notas> recebeNotas() {
-		// TODO Auto-generated method stub
 		List<Notas> lista =  new ArrayList<Notas>();
 		Connection con = GenericDAOImpl.getInstance().getConnection();
 		String query = "{call recebe_notas}";
@@ -71,6 +69,7 @@ public class ApuracaoDAOImpl implements ApuracaoDAO {
 		return lista;
 	}
 
+	//Recebe proxima nota a ser inserida
 	@Override
 	public String[] proximaNota(int que, int esc, int jur) {
 		Connection con = GenericDAOImpl.getInstance().getConnection();
@@ -87,16 +86,15 @@ public class ApuracaoDAOImpl implements ApuracaoDAO {
 				nomes[0] = rs.getString("quesito");
 				nomes[1] = rs.getString("escola");
 				nomes[2] = rs.getString("jurado");
-				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return nomes;
 	}
 
+	//Function para receber quesitos
 	@Override
 	public List<Quesito> buscaQuesitos() {
 		Connection con = GenericDAOImpl.getInstance().getConnection();
@@ -112,12 +110,12 @@ public class ApuracaoDAOImpl implements ApuracaoDAO {
 				lista.add(q);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return lista;
 	}
 
+	//Recebe notas por quesito
 	@Override
 	public List<Notas> ntPorQuesito(int quesito) {
 		Connection con = GenericDAOImpl.getInstance().getConnection();
@@ -142,13 +140,13 @@ public class ApuracaoDAOImpl implements ApuracaoDAO {
 				lista.add(nt);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return lista;
 	}
 
+	//Recebe nota total das escolas
 	@Override
 	public List<TotalNotas> recebeTotal() {
 		Connection con = GenericDAOImpl.getInstance().getConnection();

@@ -21,29 +21,18 @@ import persistence.ApuracaoDAOImpl;
 public class NotasQuesitos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public NotasQuesitos() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String botao = request.getParameter("botao");
-		
+		//Realiza busca por quesito
 		if ("buscaQuesito".equals(botao)) {
 			String quesito = request.getParameter("combobox");
 			List<Notas> lista = listaNotas(Integer.parseInt(quesito));
@@ -53,16 +42,16 @@ public class NotasQuesitos extends HttpServlet {
 	}
 
 	public List<Quesito> recebeQuesitos(){
-		ApuracaoDAOImpl ap = new ApuracaoDAOImpl();
-		return ap.buscaQuesitos();
+		ApuracaoDAOImpl dao = new ApuracaoDAOImpl();
+		return dao.buscaQuesitos();
 	}
 	
 	public List<Notas> listaNotas(int quesito){
-		ApuracaoDAOImpl ap = new ApuracaoDAOImpl();
-		return ap.ntPorQuesito(quesito);
+		ApuracaoDAOImpl dao = new ApuracaoDAOImpl();
+		return dao.ntPorQuesito(quesito);
 	}
 	public List<TotalNotas> recebeTotal() {
-		ApuracaoDAOImpl ap = new ApuracaoDAOImpl();
-		return ap.recebeTotal();
+		ApuracaoDAOImpl dao = new ApuracaoDAOImpl();
+		return dao.recebeTotal();
 	}
 }

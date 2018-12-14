@@ -23,28 +23,20 @@ import persistence.ApuracaoDAOImpl;
 public class CadastrarNota extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CadastrarNota() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String opc =  request.getParameter("prButton");
 		
+		//recebe variaveis de nota
 		if ("enviarNota".equals(opc)) {
 			String idEscola = request.getParameter("escola");
 			String idQuesito = request.getParameter("quesito");
@@ -66,9 +58,12 @@ public class CadastrarNota extends HttpServlet {
 			}
 		}
 		
+		//ir para a pagina quesito
 		if ("verQuesito".equals(opc)) {
 			response.sendRedirect("./quesito.jsp");
 		}
+		
+		//ir para a pagina total
 		if ("verTotal".equals(opc)) {
 			response.sendRedirect("./total.jsp");
 		}

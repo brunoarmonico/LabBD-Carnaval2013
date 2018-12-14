@@ -23,16 +23,17 @@
 	
 	<br>
 		<table class="table table-striped">
-		<tr>
-			<th>Escola</th>
-			<th>Nota</th>
-		</tr>
-		<% for(TotalNotas nt : lista){ %>
-		<tr>
-			<td> <input type="hidden" name="escola"/> <% out.print(nt.getEscola()); %> </td>
-			<td> <input type="hidden" name="total"/> <% out.print(nt.getTotal()); %> </td>
-		</tr>
-		<% } %>			
+			<tr>
+				<th>Escola</th>
+				<th>Nota</th>
+			</tr>
+			<% for(TotalNotas nt : lista){ %>
+			<tr>
+				<td> <input type="hidden" name="escola"/> <% out.print(nt.getEscola()); %> </td>
+				<td> <input type="hidden" name="total"/> <% out.print(nt.getTotal()); %> </td>
+			</tr>
+			<% } %>	
+		</table>		
 		<% } else { %>
 		NENHUMA NOTA AINDA.
 		<% } %>
